@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/* Design tokens — Tailwind v4 @theme (from DESIGN.md) */
+@theme {
+  --color-void: #000000;
+  --color-surface: #0a0a0a;
+  --color-crimson: #e63329;
+  --color-crimson-dim: #b32720;
+
+  --radius-card: 5px;
+  --radius-pill: 999px;
+
+  --spacing-14: 14px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+}
+
+/*
+ * Fonts are loaded and self-hosted by next/font in app/layout.tsx, which
+ * exposes them as the CSS variables --font-syne and --font-inter on <html>.
+ * @theme inline makes the font-* utilities resolve to those runtime variables
+ * (literal stacks kept as fallbacks) instead of inlining a static value.
+ */
+@theme inline {
+  --font-syne: var(--font-syne), "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Achromatic text/border tokens not expressed as Tailwind palette colors */
+:root {
+  --color-white: #ffffff;
+  --color-muted: rgba(255, 255, 255, 0.4);
+  --color-faint: rgba(255, 255, 255, 0.25);
+  --color-hairline: rgba(255, 255, 255, 0.08);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-white);
+    font-family: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+}
