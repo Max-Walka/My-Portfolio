@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { FiArrowUpRight } from "react-icons/fi";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 
 interface Project {
@@ -11,6 +12,8 @@ interface Project {
   /** Path to a screenshot in /public, e.g. "/images/docbase.png". Optional —
    * falls back to the placeholder label when omitted. */
   image?: string;
+  /** External link to the live project. When set, the title becomes a link. */
+  url?: string;
 }
 
 // Ordered most-important first.
@@ -18,33 +21,33 @@ const projects: Project[] = [
   {
     title: "DOCBase",
     description:
-      "A self-hosted RAG platform with a built-in MCP server: ingest documents, query them with cited answers, and expose the whole pipeline as tools to any LLM client.",
+      "RAG pipeline built from scratch in Python. Voyage AI embeddings, Supabase pgvector, Anthropic Claude API, MCP server for Claude Desktop integration. FastAPI + Docker backend on Railway, Next.js frontend on Vercel. 100% retrieval accuracy.",
     image: "/images/DOCBaseUI.PNG",
-    tags: ["Python", "FastAPI", "Next.js", "pgvector", "Docker", "Railway"],
+    tags: [
+      "Python",
+      "FastAPI",
+      "Next.js",
+      "Docker",
+      "Railway",
+      "VoyageAI",
+      "Vercel",
+      "MCP",
+    ],
+  },
+  {
+    title: "Spinal Cord Injury Assessment Tool",
+    description:
+      "A spinal cord injury assessment tool, built for clinicians at Middlemore Hospital. Replacing error-prone paper forms with a fast, auditable digital workflow. Made for my capstone project at AUT (image contains mock data)",
+    image: "/images/Spinal.PNG",
+    tags: ["Next.js", "Supabase", "Vercel", "ISNCSCI", "TypeScript"],
   },
   {
     title: "OSRS Loot Simulator",
     description:
       "Pulls live drop tables and Grand Exchange prices to Monte-Carlo thousands of kills and project realistic loot value over time.",
-    tags: ["Next.js", "TypeScript", "Redis"],
-  },
-  {
-    title: "Spinal Cord Injury Assessment Tool",
-    description:
-      "A clinical tool for scoring and tracking spinal cord injuries, replacing error-prone paper forms with a fast, auditable digital workflow.",
-    tags: ["React", "Supabase", "Vercel"],
-  },
-  {
-    title: "PipeWorks Plumbing",
-    description:
-      "An SEO-focused marketing site for a local plumber: service pages, booking enquiries, and a mobile-first build that loads fast.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
-  },
-  {
-    title: "Atlas Analytics",
-    description:
-      "Dummy project — a real-time analytics dashboard with custom charts, filters, and shareable reports.",
-    tags: ["React", "D3", "Node.js"],
+    url: "https://osrs-loot-simulator.vercel.app/",
+    image: "/images/OSRS.PNG",
+    tags: ["Next.js", "TypeScript", "Redis", "Vercel"],
   },
 ];
 
@@ -183,7 +186,28 @@ function ProjectCarousel({
 
             <div className="flex-1 p-[20px]">
               <h3 className="font-syne text-[24px] font-bold text-white">
-                {project.title}
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    // Stop pointer events bubbling so opening the link doesn't
+                    // trigger the carousel's drag / play-pause handling.
+                    onPointerDown={(e) => e.stopPropagation()}
+                    onPointerUp={(e) => e.stopPropagation()}
+                    className="group inline-flex items-center gap-[6px] text-crimson transition-colors duration-200 hover:text-white"
+                  >
+                    <span className="underline decoration-crimson/40 decoration-1 underline-offset-[5px] transition-colors duration-200 group-hover:decoration-white">
+                      {project.title}
+                    </span>
+                    <FiArrowUpRight
+                      aria-hidden
+                      className="text-[20px] transition-transform duration-200 group-hover:-translate-y-[2px] group-hover:translate-x-[2px]"
+                    />
+                  </a>
+                ) : (
+                  project.title
+                )}
               </h3>
               <p className="mt-[8px] max-w-[70ch] text-[14px] font-normal leading-[1.7] text-white/50">
                 {project.description}
