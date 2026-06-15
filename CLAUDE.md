@@ -130,3 +130,30 @@ Never install LangChain, LlamaIndex, or any AI framework
 Never use console.log in production code
 Never leave TODO comments in final output
 Never use placeholder lorem ipsum text
+
+---
+
+## Current State & Session Notes (updated 2026-06-15)
+
+**Build status:** All four sections are built and wired into `app/page.tsx` (Nav → Hero → About → Projects). `EncryptedText` and the constellation canvas are fully implemented. Site typechecks clean (`tsc --noEmit`) and builds. There is **no Contact section/route** — contact info lives in About.
+
+**Intentional deviations from the spec above** (these supersede the earlier sections where they conflict — confirmed with the user):
+
+- **Layout / padding:** No max-width containers. Every section is full-bleed and uses `px-[4vw]` horizontal padding (not `px-32`/32px). Nav, Hero, About, Projects share the `4vw` left edge. DESIGN.md has been updated to match.
+- **Nav:** Sticky (`sticky top-0 z-50`) with a solid `bg-void` fill — this deliberately overrides the "never a sticky nav with background fill" rule, since content scrolls behind it. Edge-to-edge `px-[4vw]`. The "Max Walker" link is a client `onClick` that smooth-scrolls to the absolute top (`window.scrollTo`). Links: About, Projects only.
+- **Hero:** Name on two lines (MAX / WALKER), `clamp(64px,10vw,120px)`, bottom-aligned (`justify-end`). Social icons use **react-icons** (`FaLinkedinIn`, `FaGithub`), not lucide. `EncryptedText` IS used on the hero name (Max, then Walker, sequenced via `startDelayMs`) — overrides the original "NOT on the hero name" rule, per explicit user request.
+- **About:** Two-column flex (left `flex-1` bio + skills, right `w-64` meta `<dl>`). Skill tags now match the project tech-tag style (crimson border + crimson text, transparent). A **Contact block** sits at the bottom of the left column: hairline divider, "Contact" label, then email / LinkedIn / GitHub plain-text links (Inter 12px 600 white/40 → white).
+- **Projects:** Single full-bleed **infinite carousel** (one row, not the original tile carousel). Driven by `transform: translate3d` (NOT `scrollLeft` — scrollLeft rounds to whole px and stalls/jumps; transform is sub-pixel and seamless). Cards `w-[64vw]` (~1.5 visible), image area `h-[60vh]` `object-cover object-top` on `bg-[#0a0a0a]`. **Click toggles play/pause; drag scrubs; hover does nothing.** Section is `h-[calc(100vh-64px)]` + `scroll-mt-[64px]` so the Projects header is the scroll floor. `SPEED`/`GAP` consts at the top control motion. Single `projects` array, important-first; some entries are clearly-labelled dummy projects for testing.
+
+**Current real content (overrides the Content section above):**
+- Bio mentions "small business websites" (no longer "clinical tools / hospitals").
+- Projects: DOCBase, OSRS Loot Simulator, Spinal Cord Injury Assessment Tool, PipeWorks Plumbing (+ Atlas Analytics / Forge CMS dummies).
+- Contact: email `walkermax193@gmail.com`, LinkedIn `https://www.linkedin.com/in/maxwalker1998/`, GitHub `https://github.com/Max-Walka`.
+- Project screenshots go in `public/images/`, referenced via the optional `image` field on a project (e.g. `/images/DOCBaseUI.PNG`). Filenames are **case-sensitive** in production (Linux/Vercel).
+
+**Dependencies:** Next pinned to **15.5.19** (patched CVE-2025-66478). Added **react-icons**. `motion` (Framer Motion), Tailwind v4, `lucide-react` also installed.
+
+**Dev / workflow gotchas:**
+- Work on the **`dev`** branch, merge to **`main`**; both push to `origin`. `node_modules`, `.next`, `dev.log`, `next-env.d.ts` are gitignored — never commit them (a past incident committed `node_modules` and broke the repo).
+- **Never run `npm run build` while `next dev` is running** — they share `.next`; the build clobbers the dev server's chunks and the page 404s / renders unstyled. Stop dev first.
+- If the editor flags errors on every JSX line, `node_modules` is missing/broken — run `npm install` and restart the TS server.

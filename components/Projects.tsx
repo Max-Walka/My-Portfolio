@@ -216,7 +216,7 @@ export function Projects() {
       <div className="shrink-0 px-[4vw] pt-[24px] pb-[20px]">
         <div className="flex items-center gap-[16px]">
           <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/25">
-            02
+            //
           </span>
           <h2 className="font-syne text-[clamp(22px,3.5vw,32px)] font-bold uppercase leading-[1.1] tracking-[-0.02em] text-white">
             <EncryptedText

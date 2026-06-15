@@ -16,6 +16,9 @@ const skills = [
   "RAG",
   "Git",
   "Linux",
+  "Vercel",
+  "Railway",
+  "Anthropic API",
 ];
 
 const meta = [
@@ -41,11 +44,11 @@ export function About() {
         {/* Section header */}
         <div className="flex items-center gap-[16px]">
           <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/25">
-            01
+            //
           </span>
           <h2 className="font-syne text-[clamp(22px,3.5vw,32px)] font-bold uppercase leading-[1.1] tracking-[-0.02em] text-white">
             <EncryptedText
-              text="About"
+              text="About me"
               encryptedClassName="text-white/30"
               revealedClassName="text-white"
             />
@@ -59,7 +62,7 @@ export function About() {
           <div className="min-w-0 flex-1">
             <p className="max-w-[58ch] text-[13px] font-normal leading-[1.8] text-white/50">
               CS graduate from AUT specialising in full stack development and AI
-              engineering. I build production-grade software — from hand-rolled
+              engineering. I build production-grade software. From hand-rolled
               RAG pipelines and MCP servers to small business websites. I care
               about writing clean, explainable code and shipping things that
               actually work in the real world.
