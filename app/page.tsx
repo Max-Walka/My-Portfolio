@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main className="mx-auto w-full max-w-[1280px]">
+      <main className="w-full">
         <Hero />
         <About />
         <Projects />

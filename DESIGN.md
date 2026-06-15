@@ -81,7 +81,7 @@ A developer portfolio built on a pure black canvas. Typography carries the perso
 | `--spacing-20` | 20px  | Nav padding vertical                               |
 | `--spacing-24` | 24px  | Skills section top margin                          |
 | `--spacing-28` | 28px  | Nav link gap                                       |
-| `--spacing-32` | 32px  | Section horizontal padding                         |
+| `--spacing-32` | 32px  | General 32px spacing (sections use `px-[4vw]`)      |
 | `--spacing-40` | 40px  | About grid gap                                     |
 | `--spacing-48` | 48px  | Section vertical padding                           |
 
@@ -110,12 +110,14 @@ No shadows. No glow. No elevation.
 ## Layout
 
 - **Page:** Single scrolling page, no routes
-- **Max width:** 1280px centered
-- **Section padding:** 48px 32px
-- **Nav padding:** 20px 32px
+- **Width:** No max-width containers on any section — every section spans the full viewport width
+- **Section padding:** 48px vertical, `px-[4vw]` horizontal
+- **Nav padding:** 20px vertical, `px-[4vw]` horizontal
 - **Hero min-height:** 380px, content aligned to bottom
 - **About grid:** 1.2fr 1fr, 40px gap, stacks on mobile
-- **Carousel:** Full bleed (margin 0 -32px), tiles 220px wide, 140px image height, 14px gap
+- **Carousel:** Full bleed (margin 0 -4vw), tiles 220px wide, 140px image height, 14px gap
+
+**Horizontal padding rule:** All sections use `px-[4vw]` horizontal padding to match the hero and nav. No max-width containers on any section. This applies to About, Projects, and any future sections.
 
 ---
 
@@ -128,7 +130,7 @@ Flat. No background. No pill. No border-radius.
 - Left: "Max Walker" — Inter 13px 600 white
 - Right: "About", "Projects", "Contact" — Inter 12px 600 rgba(255,255,255,0.4), white on hover
 - Bottom: 1px solid rgba(255,255,255,0.08)
-- Padding: 20px 32px
+- Padding: 20px vertical, `px-[4vw]` horizontal
 
 ### Hero
 
