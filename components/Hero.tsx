@@ -28,7 +28,7 @@ export function Hero() {
           Full Stack Developer & AI Engineer
         </p>
 
-        <h1 className="mt-[20px] font-syne text-[clamp(64px,10vw,120px)] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] text-white">
+        <h1 className="mt-[20px] font-syne text-[clamp(34px,10.5vw,56px)] font-extrabold uppercase leading-[0.9] tracking-[-0.04em] text-white sm:text-[clamp(64px,10vw,120px)]">
           <EncryptedText
             text="Max"
             revealDelayMs={150}
