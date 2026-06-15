@@ -44,7 +44,7 @@ const projects: Project[] = [
   {
     title: "OSRS Loot Simulator",
     description:
-      "Pulls live drop tables and Grand Exchange prices to Monte-Carlo thousands of kills and project realistic loot value over time.",
+      "Pulls live drop tables and Grand Exchange prices to simulate thousands of kills and project realistic loot value over time.",
     url: "https://osrs-loot-simulator.vercel.app/",
     image: "/images/OSRS.PNG",
     tags: ["Next.js", "TypeScript", "Redis", "Vercel"],
